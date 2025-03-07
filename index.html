@@ -3,24 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Envíos - CubaExpress</title>
+  <title>Productos - CubaExpress</title>
   <style>
-    /* Reset y estilos globales */
     * {
-      margin: 0;  
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
-
     body {
-      background-color: #f4f7fc;
+      background-color: #f4f7fa;
       color: #333;
-      font-size: 16px;
-      line-height: 1.5;
     }
-
-    /* Menú de navegación */
     nav {
       display: flex;
       justify-content: center;
@@ -72,49 +66,154 @@
       100% { left: -100%; }
     }
 
-    /* Media Queries para móviles */
-    @media (max-width: 1024px) {
-      nav {
-        flex-direction: row; /* Los enlaces estarán en una sola fila */
-      }
-      nav a {
-        font-size: 18px;
-        padding: 10px 20px;
-      }
-      .barra-mensaje {
-        font-size: 18px;
-        padding: 20px;
-      }
+    /* Estilos de la sección de productos */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column; /* Los enlaces se apilarán en pantallas más pequeñas */
-        text-align: center;
-      }
-      nav a {
-        font-size: 18px;
-        padding: 10px 20px;
-      }
-      .barra-mensaje {
-        font-size: 18px;
-        padding: 20px;
-      }
+    h2 {
+      font-size: 2rem;
+      color: #1e3c72;
+      margin-bottom: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
     }
 
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 16px;
-        padding: 8px 15px;
-      }
-      .barra-mensaje {
-        font-size: 16px;
-        padding: 15px;
-      }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #28a745;
+    }
+
+    .producto {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .producto img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .producto:hover img {
+      transform: scale(1.05);
+    }
+
+    .producto h3 {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: #2a5298;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .producto p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      height: 50px;
+      overflow: hidden;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease-in-out;
+      width: 48%;
+    }
+
+    .agregar {
+      background: #28a745;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2);
+    }
+    .agregar:hover {
+      background: #218838;
+      box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
+    }
+
+    .detalles {
+      background: #007bff;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    }
+    .detalles:hover {
+      background: #0056b3;
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Modal de detalles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .modal.active {
+      display: block;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .cerrar {
+      background: #dc3545;
+      color: white;
+      padding: 8px 15px;
+      margin-top: 15px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cerrar:hover {
+      background: #c82333;
     }
   </style>
 </head>
 <body>
+
   <!-- Menú y barra de mensaje -->
   <nav>
     <a href="index.html">Inicio</a>
@@ -124,5 +223,73 @@
   <div class="barra-mensaje">
     <span class="mensaje">¡Aprovecha un 15% de descuento en tu envío! 📦 Envíos rápidos y seguros a Cuba.</span>
   </div>
+
+  <h2>Nuestros Productos</h2>
+
+  <div class="productos">
+    <!-- Puedes copiar y pegar más productos aquí -->
+    <div class="producto" data-nombre="Caja Pequeña" data-precio="10" data-descripcion="Caja pequeña de 1kg para envíos rápidos.">
+      <img src="caja-pequena.jpg" alt="Caja Pequeña">
+      <h3>Caja Pequeña - $10</h3>
+      <p>Caja ideal para tus pequeños envíos, con alta seguridad y durabilidad.</p>
+      <div class="botones">
+        <button class="agregar">Agregar al carrito</button>
+        <button class="detalles">Ver Detalles</button>
+      </div>
+    </div>
+
+    <div class="producto" data-nombre="Caja Mediana" data-precio="15" data-descripcion="Caja mediana de 3kg para envíos rápidos.">
+      <img src="caja-mediana.jpg" alt="Caja Mediana">
+      <h3>Caja Mediana - $15</h3>
+      <p>Perfecta para productos de tamaño medio. Resistente y fácil de manejar.</p>
+      <div class="botones">
+        <button class="agregar">Agregar al carrito</button>
+        <button class="detalles">Ver Detalles</button>
+      </div>
+    </div>
+
+    <div class="producto" data-nombre="Caja Grande" data-precio="20" data-descripcion="Caja grande de 5kg para envíos rápidos.">
+      <img src="989ff05a2fcf9d12d919bcd81762e28c.jpg" alt="Caja Grande">
+      <h3>Caja Grande - $20</h3>
+      <p>La opción más grande para envíos pesados. Espaciosa y muy resistente.</p>
+      <div class="botones">
+        <button class="agregar">Agregar al carrito</button>
+        <button class="detalles">Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <h3 id="modal-titulo"></h3>
+    <p id="modal-descripcion"></p>
+    <button class="cerrar">Cerrar</button>
+  </div>
+
+  <script>
+    document.querySelectorAll(".agregar").forEach(button => {
+      button.addEventListener("click", function() {
+        let producto = this.closest(".producto");
+        let nombre = producto.getAttribute("data-nombre");
+        let precio = producto.getAttribute("data-precio");
+        window.location.href = `calculadora.html?nombre=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio)}`;
+      });
+    });
+
+    document.querySelectorAll(".detalles").forEach(button => {
+      button.addEventListener("click", function() {
+        let producto = this.closest(".producto");
+        let nombre = producto.getAttribute("data-nombre");
+        let descripcion = producto.getAttribute("data-descripcion");
+        document.getElementById("modal-titulo").textContent = nombre;
+        document.getElementById("modal-descripcion").textContent = descripcion;
+        document.getElementById("modal").classList.add("active");
+      });
+    });
+
+    document.querySelector(".cerrar").addEventListener("click", function() {
+      document.getElementById("modal").classList.remove("active");
+    });
+  </script>
+
 </body>
 </html>
