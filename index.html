@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Envíos - CubaExpress</title>
+  <style>
+    /* Reset y estilos globales */
+    * {
+      margin: 0;  
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f7fc;
+      color: #333;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* Menú de navegación */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(135deg, #283593, #3f51b5);
+      padding: 15px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      font-size: 20px;
+      margin: 5px 10px;
+      border-radius: 5px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Barra de mensaje */
+    .barra-mensaje {
+      background: linear-gradient(135deg, #ff8a65, #ff7043);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mensaje {
+      display: inline-block;
+      position: absolute;
+      left: 100%;
+      animation: moverMensaje 12s linear infinite;
+    }
+    @keyframes moverMensaje {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    /* Media Queries para móviles */
+    @media (max-width: 1024px) {
+      nav {
+        flex-direction: row; /* Los enlaces estarán en una sola fila */
+      }
+      nav a {
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+      .barra-mensaje {
+        font-size: 18px;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column; /* Los enlaces se apilarán en pantallas más pequeñas */
+        text-align: center;
+      }
+      nav a {
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+      .barra-mensaje {
+        font-size: 18px;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 16px;
+        padding: 8px 15px;
+      }
+      .barra-mensaje {
+        font-size: 16px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Menú y barra de mensaje -->
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="sobre-nosotros.html">Sobre Nosotros</a>
+    <a href="calculadora.html">Calculadora de Envíos</a>
+  </nav>
+  <div class="barra-mensaje">
+    <span class="mensaje">¡Aprovecha un 15% de descuento en tu envío! 📦 Envíos rápidos y seguros a Cuba.</span>
+  </div>
+</body>
+</html>
