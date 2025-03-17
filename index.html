@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CubaMax</title>
 
+
         <style>
           * {
             margin: 0;
@@ -41,54 +42,48 @@
             border-bottom: 4px solid #3b3b8f; /* Detalle oscuro para contraste */
           }
         
+          /* Se reemplaza el menú y el mensaje por los estilos anteriores */
           nav {
             display: flex;
             justify-content: center;
-            background: #e3e3e3; /* Gris claro para el fondo */
+            background: #e3e3e3;
             padding: 18px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
           }
-        
           nav a {
             color: #333;
             text-decoration: none;
-            padding: 14px 28px;
+            padding: 13px 25px;
             font-size: 18px;
-            margin: 0 14px;
+            margin: 0 10px;
             border-radius: 12px;
-            transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.1); /* Gris traslúcido para el fondo */
+            transition: 0.3s;
+            background: rgba(0, 0, 0, 0.1);
           }
-        
           nav a:hover {
             background: rgba(0, 0, 0, 0.2);
             transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
           }
         
           .barra-mensaje {
-            background: linear-gradient(135deg, #8fd3f4, #84c1f5); /* Gradiente de azul claro */
+            background: linear-gradient(135deg, #8fd3f4, #84c1f5);
             color: white;
             text-align: center;
-            padding: 25px;
-            font-size: 20px;
+            padding: 20px;
+            font-size: 18px;
             font-weight: bold;
-            overflow: hidden;
             white-space: nowrap;
+            overflow: hidden;
             position: relative;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
           }
-        
           .mensaje {
-            display: inline-block;
             position: absolute;
             left: 100%;
             animation: moverMensaje 12s linear infinite;
           }
-        
           @keyframes moverMensaje {
             0% { left: 100%; }
             100% { left: -100%; }
