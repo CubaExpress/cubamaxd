@@ -1,295 +1,423 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos - CubaExpress</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background-color: #f4f7fa;
-      color: #333;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background: linear-gradient(135deg, #283593, #3f51b5);
-      padding: 15px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 25px;
-      font-size: 20px;
-      margin: 5px 10px;
-      border-radius: 5px;
-      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      background: rgba(255, 255, 255, 0.2);
-    }
-    nav a:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubaExpress - Envíos a Cuba</title>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>CubaExpress - Envíos a Cuba</title>
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CubaMax</title>
 
-    /* Barra de mensaje */
-    .barra-mensaje {
-      background: linear-gradient(135deg, #ff8a65, #ff7043);
-      color: white;
-      text-align: center;
-      padding: 30px;
-      font-size: 22px;
-      font-weight: bold;
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-      box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .mensaje {
-      display: inline-block;
-      position: absolute;
-      left: 100%;
-      animation: moverMensaje 12s linear infinite;
-    }
-    @keyframes moverMensaje {
-      0% { left: 100%; }
-      100% { left: -100%; }
-    }
-
-    /* Estilos de la sección de productos */
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      padding: 50px 20px;
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: #1e3c72;
-      margin-bottom: 50px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: #28a745;
-    }
-
-    .producto {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.3s ease;
-    }
-
-    .producto:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .producto img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .producto:hover img {
-      transform: scale(1.05);
-    }
-
-    .producto h3 {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      color: #2a5298;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .producto p {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      height: 50px;
-      overflow: hidden;
-    }
-
-    .botones {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    button {
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s ease-in-out;
-      width: 48%;
-    }
-
-    .agregar {
-      background: #28a745;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2);
-    }
-    .agregar:hover {
-      background: #218838;
-      box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
-    }
-
-    .detalles {
-      background: #007bff;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-    }
-    .detalles:hover {
-      background: #0056b3;
-      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
-    }
-
-    /* Modal de detalles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      border-radius: 15px;
-      text-align: center;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .modal.active {
-      display: block;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .cerrar {
-      background: #dc3545;
-      color: white;
-      padding: 8px 15px;
-      margin-top: 15px;
-      font-size: 14px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .cerrar:hover {
-      background: #c82333;
-    }
-  </style>
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+          }
+        
+          body {
+            background-color: #fafafa; /* Gris muy claro */
+            color: #333;
+            font-size: 16px;
+          }
+        
+          header {
+            background: #4e4e9f; /* Azul suave y moderno */
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            border-bottom: 4px solid #3b3b8f; /* Detalle oscuro para contraste */
+          }
+        
+          nav {
+            display: flex;
+            justify-content: center;
+            background: #e3e3e3; /* Gris claro para el fondo */
+            padding: 18px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+          }
+        
+          nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 18px;
+            margin: 0 14px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.1); /* Gris traslúcido para el fondo */
+          }
+        
+          nav a:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          }
+        
+          .barra-mensaje {
+            background: linear-gradient(135deg, #8fd3f4, #84c1f5); /* Gradiente de azul claro */
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        
+          .mensaje {
+            display: inline-block;
+            position: absolute;
+            left: 100%;
+            animation: moverMensaje 12s linear infinite;
+          }
+        
+          @keyframes moverMensaje {
+            0% { left: 100%; }
+            100% { left: -100%; }
+          }
+        
+          section {
+            padding: 60px 20px;
+            text-align: center;
+            background: #ffffff;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+          }
+        
+          section h2 {
+            font-size: 34px;
+            color: #4e4e9f; /* Azul suave para títulos */
+            margin-bottom: 20px;
+          }
+        
+          section p {
+            font-size: 18px;
+            color: #666;
+          }
+        
+          .productos-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin: 0 auto;
+          }
+        
+          .producto {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 280px;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+          }
+        
+          .producto img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+          }
+        
+          .producto img:hover {
+            transform: scale(1.1);
+          }
+        
+          .precio {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #00aaff; /* Azul vibrante para los precios */
+          }
+        
+          .botones {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+          }
+        
+          .botones button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+          }
+        
+          .botones button:hover {
+            transform: translateY(-2px);
+          }
+        
+          .agregar-carrito {
+            background-color: #56c596; /* Verde suave */
+            color: white;
+          }
+        
+          .agregar-carrito:hover {
+            background-color: #4ca97a;
+          }
+        
+          .detalles {
+            background-color: #ffab00; /* Amarillo brillante para detalles */
+            color: white;
+          }
+        
+          .detalles:hover {
+            background-color: #ff9100;
+          }
+        
+          .cartel-detalles {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s forwards;
+          }
+        
+          .cartel-detalles button {
+            margin-top: 12px;
+            padding: 10px 18px;
+            border: none;
+            background: #d9534f;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+        
+          .cartel-detalles button:hover {
+            background-color: #c9302c;
+          }
+        
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+        
+          @media screen and (max-width: 768px) {
+            header {
+              font-size: 28px;
+              padding: 25px;
+            }
+        
+            nav a {
+              font-size: 16px;
+              padding: 12px 20px;
+            }
+        
+            .barra-mensaje {
+              font-size: 18px;
+              padding: 20px;
+            }
+        
+            section {
+              padding: 40px 15px;
+            }
+        
+            .productos-container {
+              grid-template-columns: 1fr;
+              gap: 15px;
+            }
+        
+            .producto {
+              width: 90%;
+              height: auto;
+            }
+        
+            .botones button {
+              font-size: 15px;
+              padding: 10px;
+            }
+          }
+        
+          @media screen and (max-width: 480px) {
+            header {
+              font-size: 24px;
+              padding: 15px;
+            }
+        
+            nav {
+              flex-direction: column;
+            }
+        
+            nav a {
+              margin: 5px 0;
+              font-size: 14px;
+              padding: 10px;
+            }
+        
+            .barra-mensaje {
+              font-size: 16px;
+              padding: 14px;
+            }
+        
+            section {
+              padding: 20px 10px;
+            }
+        
+            .botones button {
+              font-size: 14px;
+              padding: 8px;
+            }
+          }
+        </style>
+        
+        
+    
 </head>
 <body>
 
-  <!-- Menú y barra de mensaje -->
+   
+
+    
   <nav>
     <a href="index.html">Inicio</a>
     <a href="sobre-nosotros.html">Sobre Nosotros</a>
     <a href="calculadora.html">Calculadora de Envíos</a>
-  </nav>
-  <div class="barra-mensaje">
+</nav>
+
+<div class="barra-mensaje">
     <span class="mensaje">¡Aprovecha un 15% de descuento en tu envío! 📦 Envíos rápidos y seguros a Cuba.</span>
-  </div>
+</div>
 
-  <h2>Nuestros Productos</h2>
+<main>
+    <section id="inicio">
+        <h2>Bienvenido a CubaMax</h2>
+        <p>Enviamos tus paquetes a Cuba de manera rápida y segura.</p>
+    </section>
 
-  <div class="productos">
-    <!-- Puedes copiar y pegar más productos aquí -->
-    <div class="producto" data-nombre="Caja Pequeña" data-precio="10" data-descripcion="Caja pequeña de 1kg para envíos rápidos.">
-      <img src="caja-pequena.jpg" alt="Caja Pequeña">
-      <h3>Caja Pequeña - $10</h3>
-      <p>Caja ideal para tus pequeños envíos, con alta seguridad y durabilidad.</p>
-      <div class="botones">
-        <button class="agregar">Agregar al carrito</button>
-        <button class="detalles">Ver Detalles</button>
-      </div>
-    </div>
+    <section id="menu">
+        <nav>
+            <a href="#alimentos">Alimentos</a>
+            <a href="#combos">Combos</a>
+            <a href="#vehiculos">Vehículos</a>
+        </nav>
+    </section>
 
-    <div class="producto" data-nombre="Caja Mediana" data-precio="15" data-descripcion="Caja mediana de 3kg para envíos rápidos.">
-      <img src="caja-mediana.jpg" alt="Caja Mediana">
-      <h3>Caja Mediana - $15</h3>
-      <p>Perfecta para productos de tamaño medio. Resistente y fácil de manejar.</p>
-      <div class="botones">
-        <button class="agregar">Agregar al carrito</button>
-        <button class="detalles">Ver Detalles</button>
-      </div>
-    </div>
+    <section id="productos">
+        <h2>PRODUCTOS</h2>
 
-    <div class="producto" data-nombre="Caja Grande" data-precio="20" data-descripcion="Caja grande de 5kg para envíos rápidos.">
-      <img src="989ff05a2fcf9d12d919bcd81762e28c.jpg" alt="Caja Grande">
-      <h3>Caja Grande - $20</h3>
-      <p>La opción más grande para envíos pesados. Espaciosa y muy resistente.</p>
-      <div class="botones">
-        <button class="agregar">Agregar al carrito</button>
-        <button class="detalles">Ver Detalles</button>
-      </div>
-    </div>
-  </div>
+        <div class="productos-container">
+            <!-- Producto: Saco de Arroz (50kg) -->
+            <article class="producto" id="alimentos" data-nombre="Saco de Arroz (50kg)" data-precio="55 USD" data-info="Arroz de alta calidad, seleccionado y empacado para garantizar frescura y sabor. Ideal para preparar platos tradicionales con un grano suelto y consistente.">
+                <img src="FB_IMG_1740937167535.jpg" alt="Saco de Arroz (50kg)" class="producto-img">
+                <div class="producto-info">
+                    <div class="precio">$55 USD</div>
+                    <div class="botones">
+                        <button class="agregar-carrito">Agregar al carrito</button>
+                        <button class="detalles" onclick="mostrarDetalles('Saco de Arroz (50kg)', 'Arroz de alta calidad, seleccionado y empacado para garantizar frescura y sabor. Ideal para preparar platos tradicionales con un grano suelto y consistente.')">Detalles</button>
+                    </div>
+                </div>
+            </article>
 
-  <div id="modal" class="modal">
-    <h3 id="modal-titulo"></h3>
-    <p id="modal-descripcion"></p>
-    <button class="cerrar">Cerrar</button>
-  </div>
+            <!-- Producto: Saco de Harina (50kg) -->
+            <article class="producto" data-nombre="Saco de Harina (50kg)" data-precio="60 USD" data-info="Harina de trigo refinada y de calidad premium, ideal para panadería, repostería y cocina en general. Asegura una textura suave y esponjosa en todas tus recetas.">
+                <img src="eca021f68c354e021b25ed6c09187066.jpg" alt="Saco de Harina (50kg)" class="producto-img">
+                <div class="producto-info">
+                    <div class="precio">$60 USD</div>
+                    <div class="botones">
+                        <button class="agregar-carrito">Agregar al carrito</button>
+                        <button class="detalles" onclick="mostrarDetalles('Saco de Harina (50kg)', 'Harina de trigo refinada y de calidad premium, ideal para panadería, repostería y cocina en general. Asegura una textura suave y esponjosa en todas tus recetas.')">Detalles</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
 
-  <script>
-    document.querySelectorAll(".agregar").forEach(button => {
-      button.addEventListener("click", function() {
-        let producto = this.closest(".producto");
-        let nombre = producto.getAttribute("data-nombre");
-        let precio = producto.getAttribute("data-precio");
-        window.location.href = `calculadora.html?nombre=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio)}`;
+<div id="cartel-detalles" class="cartel-detalles">
+    <p id="info-producto"></p>
+    <button onclick="cerrarCartel()">Cerrar</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 CubaMax. Todos los derechos reservados.</p>
+</footer>
+
+
+
+    <script>
+      document.querySelectorAll(".agregar-carrito").forEach(boton => {
+          boton.addEventListener("click", function () {
+              let producto = this.closest(".producto");
+              let nombre = producto.getAttribute("data-nombre");
+              let precio = producto.getAttribute("data-precio");
+    
+              // Redirigir a la calculadora con los datos del producto
+              window.location.href = `calculadora.html?nombre=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(precio)}`;
+          });
       });
-    });
-
-    document.querySelectorAll(".detalles").forEach(button => {
-      button.addEventListener("click", function() {
-        let producto = this.closest(".producto");
-        let nombre = producto.getAttribute("data-nombre");
-        let descripcion = producto.getAttribute("data-descripcion");
-        document.getElementById("modal-titulo").textContent = nombre;
-        document.getElementById("modal-descripcion").textContent = descripcion;
-        document.getElementById("modal").classList.add("active");
+    
+      document.querySelectorAll(".detalles").forEach(boton => {
+          boton.addEventListener("click", function () {
+              let producto = this.closest(".producto");
+              let nombre = producto.getAttribute("data-nombre");
+              let precio = producto.getAttribute("data-precio");
+    
+              document.getElementById("info-producto").textContent = `Detalles de ${nombre}: Precio $${precio}`;
+              let cartel = document.getElementById("cartel-detalles");
+              cartel.style.display = "block";
+              cartel.style.animation = "fadeIn 0.3s forwards";
+          });
       });
-    });
-
-    document.querySelector(".cerrar").addEventListener("click", function() {
-      document.getElementById("modal").classList.remove("active");
-    });
-  </script>
+    
+      function cerrarCartel() {
+          let cartel = document.getElementById("cartel-detalles");
+          cartel.style.animation = "fadeOut 0.3s forwards";
+          setTimeout(() => {
+              cartel.style.display = "none";
+          }, 300);
+      }
+    </script>
 
 </body>
 </html>
